@@ -33,10 +33,17 @@ var listener = app.listen(8000, function () {
 
 
 //APP
+/* When the user requests using this route, it gets the user's ip, the language 
+of the user, and the browser infomation and sends it back as json to the user 
+
+The ip can be gotten directly from the request object while the rest (language 
+and browser) is gotten from the req.headers (a node/express object that has info
+about the browser of the client) */
 app.get("/api/whoami", (req, res) => {
-	const ip = req.ip;
-	const language = req.headers["accept-language"];
-	const software = req.headers["user-agent"];
+	const ip = req.ip;									// Ip address
+	const language = req.headers["accept-language"];	// Language
+	const software = req.headers["user-agent"];			// Browser
+	
 	res.json({
 		ipaddress: ip,
 		language: language,
